@@ -1,6 +1,7 @@
 package application;
 
 import db.DB;
+import db.DbException.DbIntegrityException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +28,7 @@ public class Program5 {
             System.out.println("Done! Rows affected: " + rowsAffected);
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            throw new DbIntegrityException(e.getMessage());
         }
         finally {
             DB.closeStatement(st);
